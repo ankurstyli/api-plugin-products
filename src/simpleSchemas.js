@@ -292,6 +292,18 @@ export const Product = new SimpleSchema({
     type: String,
     label: "Product ID"
   },
+  "optionId": {
+    type: String,
+    label: "Option Id"
+  },
+  "styleId": {
+    type: String,
+    label: "Style Id"
+  },
+  "shootStatus": {
+    type: String,
+    label: "Style Id"
+  },
   "ancestors": {
     type: Array
   },
