@@ -16,6 +16,10 @@ const filters = new SimpleSchema({
     optional: true
   },
   "tagIds.$": String,
+  "skus": {
+    type: String,
+    optional: true
+  },
   "query": {
     type: String,
     optional: true
@@ -60,7 +64,7 @@ export default function applyProductFilters(context, productFilters) {
 
   // Init default selector - Everyone can see products that fit this selector
   let selector = {
-    ancestors: [], // Lookup top-level products
+    // ancestors: [], // Lookup top-level products
     isDeleted: { $ne: true } // by default, we don't publish deleted products
   };
 
@@ -83,6 +87,7 @@ export default function applyProductFilters(context, productFilters) {
         }
       };
     }
+
 
     // filter by tags
     if (productFilters.tagIds) {
@@ -108,6 +113,8 @@ export default function applyProductFilters(context, productFilters) {
           pageTitle: cond
         }, {
           description: cond
+        },{
+          sku: cond
         }]
       };
     }
@@ -146,6 +153,14 @@ export default function applyProductFilters(context, productFilters) {
         isDeleted: productFilters.isArchived
       };
     }
+
+    // // filter by skus
+    // if (productFilters.skus !== undefined) {
+    //   selector = {
+    //     ...selector,
+    //     sku: productFilters.skus
+    //   };
+    // }
 
     // filter by gte minimum price
     if (productFilters.priceMin && !productFilters.priceMax) {

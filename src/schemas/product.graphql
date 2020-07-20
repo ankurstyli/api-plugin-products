@@ -3,6 +3,9 @@ type Product {
   "Product ID"
   _id: ID!
 
+  "Ancestors"
+  ancestors: [String]
+
   "The date and time at which this product was created"
   createdAt: DateTime!
 
@@ -642,6 +645,9 @@ extend type Query {
 
     "List of tag ids to filter by"
     tagIds: [ID]
+
+    "List of Sku ids to filter by"
+    skus: String
 
     "Return only results that come after this cursor. Use this with `first` to specify the number of results to return."
     after: ConnectionCursor,

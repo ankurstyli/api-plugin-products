@@ -20,18 +20,36 @@ import applyProductFilters from "../utils/applyProductFilters.js";
  * @returns {Promise<Object>} Products object Promise
  */
 export default async function products(context, input) {
-  const { collections } = context;
-  const { Products } = collections;
-  const productFilters = input;
+    const {collections} = context;
+    const {Products} = collections;
+    const productFilters = input;
 
-  // Check the permissions for all shops requested
-  await Promise.all(productFilters.shopIds.map(async (shopId) => {
-    await context.validatePermissions("reaction:legacy:products", "read", { shopId });
-  }));
+    // Check the permissions for all shops requested
+    await Promise.all(productFilters.shopIds.map(async (shopId) => {
+        await context.validatePermissions("reaction:legacy:products", "read", {shopId});
+    }));
 
-  // Create the mongo selector from the filters
-  const selector = applyProductFilters(context, productFilters);
+    // Create the mongo selector from the filters
+    const selector = applyProductFilters(context, productFilters);
 
-  // Get the first N (limit) top-level products that match the query
-  return Products.find(selector);
+    // Get the first N (limit) top-level products that match the query
+    return await Products.find(selector);
+
+    // //Return only parent products. Run a loop and get only parent products.
+    // const resProducts = [];
+
+    // for (const prod of allProducts) {
+    //     let parent = prod;
+    //     if (prod.ancestors && prod.ancestors.length) {
+    //         //Get parent product
+    //         console.log('@found parent id',prod.ancestors[0] );
+    //         const parentProd = await Products.find({
+    //             _id: prod.ancestors[0]
+    //         })
+    //         parent = parentProd;
+    //     }
+    //     resProducts.push(parent);
+    // }
+    // return resProducts;
+
 }
