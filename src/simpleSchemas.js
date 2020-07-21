@@ -302,7 +302,7 @@ export const Product = new SimpleSchema({
   },
   "shootStatus": {
     type: String,
-    label: "Style Id"
+    label: "Shoot Status"
   },
   "ancestors": {
     type: Array

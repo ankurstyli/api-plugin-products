@@ -9,6 +9,9 @@ type Product {
   "Style Id"
   styleId: String
 
+  "SKU"
+  sku:String
+
   "Shoot Status"
   shootStatus: String
 

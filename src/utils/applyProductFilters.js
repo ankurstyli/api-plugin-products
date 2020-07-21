@@ -20,7 +20,7 @@ const filters = new SimpleSchema({
     type: String,
     optional: true
   },
-  "shootstatus": {
+  "shootStatus": {
     type: String,
     optional: true
   },
@@ -155,10 +155,10 @@ export default function applyProductFilters(context, productFilters) {
     }
 
     // filter by shoot status
-    if (productFilters.shootstatus !== undefined) {
+    if (productFilters.shootStatus !== undefined) {
       selector = {
         ...selector,
-        shootstatus: productFilters.shootstatus
+        shootStatus: productFilters.shootStatus
       };
     }
 
