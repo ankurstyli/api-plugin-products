@@ -667,6 +667,15 @@ extend type Query {
     "List of Sku ids to filter by"
     skus: String
 
+    "Shoot Status"
+    shootStatus: String
+
+    "Option Id"
+    optionId: String
+
+    "Style Id"
+    styleId: String
+
     "Return only results that come after this cursor. Use this with `first` to specify the number of results to return."
     after: ConnectionCursor,
 

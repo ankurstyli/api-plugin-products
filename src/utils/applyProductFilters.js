@@ -20,6 +20,10 @@ const filters = new SimpleSchema({
     type: String,
     optional: true
   },
+  "shootstatus": {
+    type: String,
+    optional: true
+  },
   "query": {
     type: String,
     optional: true
@@ -115,6 +119,10 @@ export default function applyProductFilters(context, productFilters) {
           description: cond
         },{
           sku: cond
+        },{
+          optionId: cond
+        },{
+          styleId: cond
         }]
       };
     }
@@ -143,6 +151,14 @@ export default function applyProductFilters(context, productFilters) {
       selector = {
         ...selector,
         isVisible: productFilters.isVisible
+      };
+    }
+
+    // filter by shoot status
+    if (productFilters.shootstatus !== undefined) {
+      selector = {
+        ...selector,
+        shootstatus: productFilters.shootstatus
       };
     }
 
