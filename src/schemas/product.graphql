@@ -1,3 +1,20 @@
+input MultiLangInput {
+   "English"
+   en: String
+
+   "Arabic"
+   ar: String
+}
+
+type MultiLang {
+   "English"
+   en: String
+
+   "Arabic"
+   ar: String
+}
+
+
 "A Reaction product"
 type Product {
   "Product ID"
@@ -25,7 +42,7 @@ type Product {
   currentProductHash: String
 
   "The full product description, which may have newline characters in it"
-  description: String
+  description: MultiLang
 
   "True if this product has been deleted. Typically, deleted products are not returned in queries."
   isDeleted: Boolean!
@@ -49,7 +66,7 @@ type Product {
   originCountry: String
 
   "Subtitle"
-  pageTitle: String
+  pageTitle: MultiLang
 
   "An arbitrary product type value, such as from an external system"
   productType: String
@@ -412,7 +429,7 @@ input ProductInput {
   _id: String
 
   "The full product description, which may have newline characters in it"
-  description: String
+  description: MultiLangInput
 
   "Option id"
   optionId: String
@@ -445,7 +462,7 @@ input ProductInput {
   originCountry: String
 
   "Subtitle"
-  pageTitle: String
+  pageTitle: MultiLangInput
 
   "Pinterest message"
   pinterestMsg: String

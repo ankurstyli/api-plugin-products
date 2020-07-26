@@ -252,6 +252,22 @@ export const ProductVariant = new SimpleSchema({
   }
 });
 
+
+/**
+ * \MultiLang/
+ */
+export const MultiLang = new SimpleSchema({
+  "en": {
+    type: String,
+    label: "English name"
+  },
+  "ar": {
+    type: String,
+    label: "Arabic name"
+  }
+});
+
+
 /**
  * @name Product
  * @type {SimpleSchema}
@@ -318,7 +334,7 @@ export const Product = new SimpleSchema({
     optional: true
   },
   "description": {
-    type: String,
+    type: MultiLang,
     optional: true
   },
   "facebookMsg": {
@@ -363,7 +379,7 @@ export const Product = new SimpleSchema({
     optional: true
   },
   "pageTitle": {
-    type: String,
+    type: MultiLang,
     optional: true
   },
   "parcel": {
