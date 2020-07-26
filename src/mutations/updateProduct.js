@@ -69,6 +69,8 @@ export default async function updateProduct(context, input) {
     }
   );
 
+  updatedProduct.shopId = shopId;
+
   await appEvents.emit("afterProductUpdate", { productId, product: updatedProduct });
 
   return updatedProduct;

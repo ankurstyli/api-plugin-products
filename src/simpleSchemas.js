@@ -259,10 +259,12 @@ export const ProductVariant = new SimpleSchema({
 export const MultiLang = new SimpleSchema({
   "en": {
     type: String,
+    optional: true,
     label: "English name"
   },
   "ar": {
     type: String,
+    optional: true,
     label: "Arabic name"
   }
 });
@@ -404,6 +406,10 @@ export const Product = new SimpleSchema({
     optional: true
   },
   "shopId": {
+    type: Array,
+    label: "ShopId Array",
+  },
+  "shopId.$": {
     type: String
   },
   "shouldAppearInSitemap": {

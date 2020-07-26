@@ -6,6 +6,7 @@ import socialMetadata from "./socialMetadata.js";
 import tagIds from "./tagIds.js";
 import tags from "./tags.js";
 
+console.log(resolveShopFromShopId, 'resolveShopFromShopId@product/index')
 export default {
   _id: (node) => encodeProductOpaqueId(node._id),
   media: (node, args, context) => getProductMedia(node, args, context),

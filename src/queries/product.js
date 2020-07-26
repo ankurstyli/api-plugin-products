@@ -20,8 +20,13 @@ export default async function product(context, input) {
     { shopId }
   );
 
-  return Products.findOne({
+  const res = await Products.findOne({
     _id: productId,
     shopId
   });
+
+  res.shop = shopId;
+  res.shopId = shopId;
+
+  return res;
 }

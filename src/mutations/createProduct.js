@@ -60,7 +60,7 @@ export default async function createProduct(context, input) {
     styleId: "",
     isDeleted: false,
     isVisible: false,
-    shopId,
+    shopId: [shopId],
     shouldAppearInSitemap: true,
     supportedFulfillmentTypes: ["shipping"],
     title: "",
