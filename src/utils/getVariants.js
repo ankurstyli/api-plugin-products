@@ -10,10 +10,11 @@
  * @param {Boolean} args.shouldIncludeArchived - Include archived products in results
  * @returns {Promise<Object[]>} Array of Product Variant objects.
  */
-export default async function getVariants(context, productOrVariantId, topOnly, args) {
+export default async function getVariants(context, node, topOnly, args) {
   const { shouldIncludeHidden, shouldIncludeArchived } = args;
   const { collections } = context;
   const { Products } = collections;
+  const {_id: productOrVariantId, shopId} = node;
 
   const selector = {
     ancestors: topOnly ? [productOrVariantId] : productOrVariantId,
@@ -34,5 +35,11 @@ export default async function getVariants(context, productOrVariantId, topOnly, 
     };
   }
 
-  return Products.find(selector).toArray();
+  const res =  await Products.find(selector).map(variant => {
+    variant.shop = shopId;
+    variant.shopId = shopId;
+    return variant;
+  }).toArray();
+
+  return res;
 }

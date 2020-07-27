@@ -83,7 +83,7 @@ export default async function createProductVariant(context, input) {
     createdAt,
     isDeleted: false,
     isVisible: false,
-    shopId,
+    shopId: [shopId],
     type: "variant",
     updatedAt: createdAt,
     workflow: {
@@ -91,6 +91,7 @@ export default async function createProductVariant(context, input) {
     },
     ...initialProductVariantData
   };
+
 
   const isOption = ancestors.length > 1;
 
@@ -109,5 +110,7 @@ export default async function createProductVariant(context, input) {
 
   Logger.debug(`createProductVariant: created variant: ${newVariantId} for ${productId}`);
 
+  newVariant.shop = shopId;
+  newVariant.shopId = shopId;
   return newVariant;
 }

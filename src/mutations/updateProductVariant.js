@@ -63,6 +63,9 @@ export default async function updateProductVariant(context, input) {
 
   if (!updatedProductVariant) throw new ReactionError("not-found", "Product variant not found");
 
+  updatedProductVariant.shop = shopId;
+  updatedProductVariant.shopId = shopId;
+
   await appEvents.emit("afterVariantUpdate", {
     fields,
     productId: updatedProductVariant.ancestors[0],

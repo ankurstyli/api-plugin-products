@@ -219,6 +219,10 @@ export const ProductVariant = new SimpleSchema({
     optional: true
   },
   "shopId": {
+    type: Array,
+    label: "ShopId Array",
+  },
+  "shopId.$": {
     type: String
   },
   "sku": {
