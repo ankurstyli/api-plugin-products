@@ -29,6 +29,9 @@ type Product {
   "SKU"
   sku:String
 
+  "Type"
+  type: String
+
   "Shoot Status"
   shootStatus: String
 

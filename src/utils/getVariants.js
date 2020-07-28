@@ -11,35 +11,39 @@
  * @returns {Promise<Object[]>} Array of Product Variant objects.
  */
 export default async function getVariants(context, node, topOnly, args) {
-  const { shouldIncludeHidden, shouldIncludeArchived } = args;
-  const { collections } = context;
-  const { Products } = collections;
-  const {_id: productOrVariantId, shopId} = node;
+    const {shouldIncludeHidden, shouldIncludeArchived} = args;
+    const {collections} = context;
+    const {Products} = collections;
+    const {_id: productOrVariantId, shopId} = node;
 
-  const selector = {
-    ancestors: topOnly ? [productOrVariantId] : productOrVariantId,
-    type: "variant"
-  };
-
-  // Only include visible variants if `false`
-  // Otherwise both hidden and visible will be shown
-  if (shouldIncludeHidden === false) {
-    selector.isVisible = true;
-  }
-
-  // Exclude archived (deleted) variants if set to `false`
-  // Otherwise include archived variants in the results
-  if (shouldIncludeArchived === false) {
-    selector.isDeleted = {
-      $ne: true
+    const selector = {
+        ancestors: topOnly ? [productOrVariantId] : productOrVariantId,
+        type: "variant"
     };
-  }
+    //Add shopId to show variants for specific shop product variants
+    if (shopId) {
+        selector.shopId = shopId;
+    }
 
-  const res =  await Products.find(selector).map(variant => {
-    variant.shop = shopId;
-    variant.shopId = shopId;
-    return variant;
-  }).toArray();
+    // Only include visible variants if `false`
+    // Otherwise both hidden and visible will be shown
+    if (shouldIncludeHidden === false) {
+        selector.isVisible = true;
+    }
 
-  return res;
+    // Exclude archived (deleted) variants if set to `false`
+    // Otherwise include archived variants in the results
+    if (shouldIncludeArchived === false) {
+        selector.isDeleted = {
+            $ne: true
+        };
+    }
+
+    const res = await Products.find(selector).map(variant => {
+        variant.shop = shopId;
+        variant.shopId = shopId;
+        return variant;
+    }).toArray();
+
+    return res;
 }
