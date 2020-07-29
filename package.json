@@ -1,7 +1,7 @@
 {
-  "name": "@reactioncommerce/api-plugin-products",
+  "name": "api-plugin-products",
   "description": "Products plugin for the Reaction API",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "main": "index.js",
   "type": "module",
   "engines": {
