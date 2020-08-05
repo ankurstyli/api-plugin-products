@@ -324,7 +324,23 @@ export const Product = new SimpleSchema({
   },
   "shootStatus": {
     type: String,
-    label: "Shoot Status"
+    label: "Shoot Status",
+    optional: true
+  },
+  "translationStatus": {
+    type: String,
+    label: "Shoot Status",
+    optional: true
+  },
+  "contentStatus": {
+    type: String,
+    label: "Shoot Status",
+    optional: true
+  },
+  "mPrice": {
+    type: String,
+    label: "Shoot Status",
+    optional: true
   },
   "ancestors": {
     type: Array

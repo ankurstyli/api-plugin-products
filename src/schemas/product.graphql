@@ -35,6 +35,15 @@ type Product {
   "Shoot Status"
   shootStatus: String
 
+  "Translation Status"
+  translationStatus: String
+
+  "Content Status"
+  contentStatus: String
+
+  "Mulin Price in Base Currency"
+  mPrice: String
+
   "Ancestors"
   ancestors: [String]
 
@@ -443,6 +452,15 @@ input ProductInput {
   "Shoot Status"
   shootStatus: String
 
+  "Translation Status"
+  translationStatus: String
+
+  "Content Status"
+  contentStatus: String
+
+  "Mulin Price in Base Currency"
+  mPrice: String
+
   "Facebook message"
   facebookMsg: String
 
@@ -692,6 +710,15 @@ extend type Query {
 
     "Shoot Status"
     shootStatus: String
+
+    "Translation Status"
+    translationStatus: String
+
+    "Content Status"
+    contentStatus: String
+
+    "Mulin Price in Base Currency"
+    mPrice: String
 
     "Option Id"
     optionId: String

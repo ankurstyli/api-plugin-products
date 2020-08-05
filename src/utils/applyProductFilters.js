@@ -24,6 +24,18 @@ const filters = new SimpleSchema({
     type: String,
     optional: true
   },
+  "mPrice": {
+    type: String,
+    optional: true
+  },
+  "translationStatus": {
+    type: String,
+    optional: true
+  },
+  "contentStatus": {
+    type: String,
+    optional: true
+  },
   "query": {
     type: String,
     optional: true
@@ -161,6 +173,23 @@ export default function applyProductFilters(context, productFilters) {
         shootStatus: productFilters.shootStatus
       };
     }
+
+    // filter by shoot status
+    if (productFilters.translationStatus !== undefined) {
+      selector = {
+        ...selector,
+        translationStatus: productFilters.translationStatus
+      };
+    }
+
+    // filter by shoot status
+    if (productFilters.contentStatus !== undefined) {
+      selector = {
+        ...selector,
+        contentStatus: productFilters.contentStatus
+      };
+    }
+
 
     // filter by archived
     if (productFilters.isArchived !== undefined) {
