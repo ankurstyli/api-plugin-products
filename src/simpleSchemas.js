@@ -342,6 +342,11 @@ export const Product = new SimpleSchema({
     label: "Shoot Status",
     optional: true
   },
+  "sku": {
+    type: String,
+    label: "Product SKU",
+    optional: true
+  },
   "ancestors": {
     type: Array
   },

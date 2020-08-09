@@ -266,6 +266,15 @@ type CreateProductPayload  {
   product: Product!
 }
 
+"Response payload of multishop `createProduct` mutation"
+type CreateMultiShopProductPayload  {
+  "The same string you sent with the mutation params, for matching mutation calls with their responses"
+  clientMutationId: String
+
+  "The created product"
+  product: Product!
+}
+
 "Response payload of `createProductVariant` mutation"
 type CreateProductVariantPayload  {
   "The same string you sent with the mutation params, for matching mutation calls with their responses"
@@ -387,6 +396,18 @@ input CreateProductInput {
   shouldCreateFirstVariant: Boolean = true
 }
 
+"Input for the multihsop `createProduct` mutation"
+input CreateMultiShopProductInput {
+  "Product input"
+  product: ProductInput
+
+  "ID of shop product will belong to"
+  shopId: [ID]!
+
+  "Set to false if you do not want to auto-create the first variant of the product"
+  shouldCreateFirstVariant: Boolean = true
+}
+
 "Input for the `createProductVariant` mutation"
 input CreateProductVariantInput {
   "ID of product variant belongs to"
@@ -445,6 +466,9 @@ input ProductInput {
 
   "Option id"
   optionId: String
+
+  "SKU"
+  sku: String
 
   "Style Id"
   styleId: String
@@ -630,6 +654,12 @@ extend type Mutation {
     "Mutation input"
     input: CreateProductInput!
   ): CreateProductPayload!
+
+  "Create a new Multishop product"
+   createMultiShopProduct(
+   "Mutation input"
+   input: CreateMultiShopProductInput!
+  ): CreateMultiShopProductPayload!
 
   "Create a new product variant"
   createProductVariant(

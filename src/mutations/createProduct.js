@@ -57,6 +57,7 @@ export default async function createProduct(context, input) {
     handle: "",
     optionId: "",
     shootStatus: "",
+    sku:"",
     mPrice:"",
     styleId: "",
     isDeleted: false,
