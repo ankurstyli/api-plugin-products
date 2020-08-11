@@ -1,5 +1,24 @@
 import SimpleSchema from "simpl-schema";
 
+
+
+/**
+ * \MultiLang/
+ */
+export const MultiLang = new SimpleSchema({
+  "en": {
+    type: String,
+    optional: true,
+    label: "English name"
+  },
+  "ar": {
+    type: String,
+    optional: true,
+    label: "Arabic name"
+  }
+});
+
+
 /**
  * @name Metafield
  * @memberof Schemas
@@ -230,7 +249,7 @@ export const ProductVariant = new SimpleSchema({
     optional: true
   },
   "title": {
-    type: String,
+    type: MultiLang,
     optional: true
   },
   "type": {
@@ -253,23 +272,6 @@ export const ProductVariant = new SimpleSchema({
   "workflow": {
     type: Workflow,
     optional: true
-  }
-});
-
-
-/**
- * \MultiLang/
- */
-export const MultiLang = new SimpleSchema({
-  "en": {
-    type: String,
-    optional: true,
-    label: "English name"
-  },
-  "ar": {
-    type: String,
-    optional: true,
-    label: "Arabic name"
   }
 });
 
@@ -450,7 +452,8 @@ export const Product = new SimpleSchema({
     optional: true
   },
   "title": {
-    type: String
+    type: MultiLang,
+    optional: true
   },
   "twitterMsg": {
     type: String,

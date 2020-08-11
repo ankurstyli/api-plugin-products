@@ -132,7 +132,7 @@ type Product {
   ): TagConnection
 
   "Product title"
-  title: String
+  title: MultiLang
 
   "The date and time at which this product was last updated"
   updatedAt: DateTime
@@ -218,7 +218,7 @@ type ProductVariant {
   `optionTitle` "Large", its parent variant has `optionTitle` `Red`, and the product
   `title` is "Fancy T-Shirt", then this `title` will be something like `Fancy T-Shirt - Red - Large`.
   """
-  title: String
+  title: MultiLang
 
   "The date and time at which this product was last updated"
   updatedAt: DateTime
@@ -528,7 +528,7 @@ input ProductInput {
   tagIds: [ID]
 
   "Product title"
-  title: String
+  title: MultiLangInput
 
   "Twitter message"
   twitterMsg: String
@@ -593,7 +593,7 @@ input ProductVariantInput {
   `optionTitle` `Large`, its parent variant has `optionTitle` `Red`, and the product
   `title` is `Fancy T-Shirt`, then this `title` will be something like `Fancy T-Shirt - Red - Large`.
   """
-  title: String
+  title: MultiLangInput
 
   "The weight of the product on Earth, if it has physical dimensions"
   weight: Float
@@ -622,9 +622,6 @@ enum ProductSortByField {
 
   "Date and time the product was created"
   createdAt
-
-  "Product title"
-  title
 
   "Date and time the product was last updated"
   updatedAt

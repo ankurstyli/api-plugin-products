@@ -16,7 +16,7 @@ const inputSchema = new SimpleSchema({
  * @summary Updates various fields on a product variant
  * @param {Object} context -  an object containing the per-request state
  * @param {Object} input - Input arguments for the bulk operation
- * @param {Object} input.variant - updated variant fields
+ * @para§m {Object} input.variant - updated variant fields
  * @param {String} input.variantId - variantId of product to update
  * @param {String} input.shopId - shopId of shop product belongs to
  * @return {Promise<Object>} updated ProductVariant
@@ -47,7 +47,6 @@ export default async function updateProductVariant(context, input) {
   updateDocument.updatedAt = new Date();
 
   const modifier = { $set: updateDocument };
-
   ProductVariant.validate(modifier, { modifier: true });
 
   const { value: updatedProductVariant } = await Products.findOneAndUpdate(
