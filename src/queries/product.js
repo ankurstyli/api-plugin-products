@@ -10,23 +10,29 @@
  * @returns {Promise<Object>} Product object Promise
  */
 export default async function product(context, input) {
-  const { collections } = context;
-  const { Products } = collections;
-  const { productId, shopId } = input;
+    const {collections} = context;
+    const {Products, Shops} = collections;
+    const {productId, shopId} = input;
 
-  await context.validatePermissions(
-    `reaction:legacy:products:${productId}`,
-    "read",
-    { shopId }
-  );
+    await context.validatePermissions(
+        `reaction:legacy:products:${productId}`,
+        "read",
+        {shopId}
+    );
 
-  const res = await Products.findOne({
-    _id: productId,
-    shopId
-  });
+    const res = await Products.findOne({
+        _id: productId,
+        shopId
+    });
 
-  res.shop = shopId;
-  res.shopId = shopId;
+    res.shop = shopId;
+    const activeShopsIds = res.shopId;
+    res.shopId = shopId;
 
-  return res;
+    //Add active shops object for product
+    res.activeShops = await Shops.find({_id: {$in: activeShopsIds}}).map((doc) => {
+        return {value: doc._id, label: doc.name}
+    }).toArray();
+
+    return res;
 }

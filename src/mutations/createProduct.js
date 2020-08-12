@@ -31,8 +31,11 @@ export default async function createProduct(context, input) {
 
   const { appEvents, collections, simpleSchemas } = context;
   const { Product } = simpleSchemas;
-  const { Products } = collections;
+  const { Products, Shops } = collections;
   const { product: productInput, shopId, shouldCreateFirstVariant = true } = input;
+
+  //Get all ShopIds
+  const shopIds = await Shops.find().map((doc) => doc._id).toArray();
 
   // Check that user has permission to create product
   await context.validatePermissions("reaction:legacy:products", "create", { shopId });
@@ -62,10 +65,10 @@ export default async function createProduct(context, input) {
     styleId: "",
     isDeleted: false,
     isVisible: false,
-    shopId: [shopId],
+    shopId: shopIds,
     shouldAppearInSitemap: true,
     supportedFulfillmentTypes: ["shipping"],
-    title: "",
+    title: {en : "", ar: ""},
     type: "simple",
     updatedAt: createdAt,
     workflow: {
@@ -89,10 +92,13 @@ export default async function createProduct(context, input) {
 
   // Create one initial product variant for it
   if (shouldCreateFirstVariant) {
-    await context.mutations.createProductVariant(context.getInternalContext(), {
+    const variantCreated = await context.mutations.createProductVariant(context.getInternalContext(), {
       productId: newProductId,
       shopId
     });
+
+    //Update all ShopIds in ProductVariant
+    await Products.updateOne({_id: variantCreated._id,}, {$set: {"shopId": shopIds}});
   }
 
   await appEvents.emit("afterProductCreate", { product: newProduct });

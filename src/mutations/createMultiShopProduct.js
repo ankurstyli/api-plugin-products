@@ -39,7 +39,7 @@ export default async function createMultiShopProduct(context, input) {
         shopId,
         shouldAppearInSitemap: true,
         supportedFulfillmentTypes: ["shipping"],
-        title: "",
+        title: {en: "", ar: ""},
         type: "simple",
         updatedAt: createdAt,
         workflow: {
@@ -57,16 +57,21 @@ export default async function createMultiShopProduct(context, input) {
         await customFunc(newProduct, {context});
     }
 
-    Product.validate(newProduct);
+    // Product.validate(newProduct);
 
     await Products.insertOne(newProduct);
 
     // Create one initial product variant for it
     if (shouldCreateFirstVariant) {
-        await context.mutations.createProductVariant(context.getInternalContext(), {
+        const newVariant = await context.mutations.createProductVariant(context.getInternalContext(), {
             productId: newProductId,
-            shopId
+            shopId: shopId[0]
         });
+
+        console.log(newVariant, 'newVariantnewVariant')
+        //Update all shopIds to the product.
+        await Products.updateOne({_id: newVariant._id,}, {$set: {shopId}});
+
     }
 
     await appEvents.emit("afterProductCreate", {product: newProduct});

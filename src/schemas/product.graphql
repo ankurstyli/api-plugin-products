@@ -14,6 +14,22 @@ type MultiLang {
    ar: String
 }
 
+type ShopInfo {
+  "shop id"
+  value: String
+
+  "shop name"
+  label: String
+}
+
+input ShopInfoInput {
+  "shop id"
+  value: String
+
+  "shop name"
+  label: String
+}
+
 
 "A Reaction product"
 type Product {
@@ -28,6 +44,9 @@ type Product {
 
   "SKU"
   sku:String
+
+  "Shop Ids"
+  activeShops:[ShopInfo]
 
   "Type"
   type: String
@@ -463,6 +482,9 @@ input ProductInput {
 
   "The full product description, which may have newline characters in it"
   description: MultiLangInput
+
+  "Active shops"
+  activeShops:[ShopInfoInput]
 
   "Option id"
   optionId: String
