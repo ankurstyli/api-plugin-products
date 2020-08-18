@@ -183,6 +183,9 @@ type ProductVariant {
   "The product variant barcode value, if it has one"
   barcode: String
 
+  "Shop Ids"
+  activeShops:[ShopInfo]
+
   "The date and time at which this variant was created"
   createdAt: DateTime
 
@@ -584,6 +587,9 @@ input ProductVariantInput {
 
   "The position of this variant among other variants at the same level of the product-variant-option hierarchy"
   index: Int
+
+  "Active shops"
+  activeShops:[ShopInfoInput]
 
   "True if this variant was deleted. Deleted variants are not published to the catalog."
   isDeleted: Boolean

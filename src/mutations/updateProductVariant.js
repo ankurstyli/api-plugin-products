@@ -25,7 +25,7 @@ export default async function updateProductVariant(context, input) {
   inputSchema.validate(input);
   const { appEvents, collections, simpleSchemas } = context;
   const { ProductVariant } = simpleSchemas;
-  const { Products } = collections;
+  const { Products, Shops } = collections;
   const { variant: productVariantInput, variantId, shopId } = input;
 
   // Check that user has permission to create product
@@ -35,9 +35,17 @@ export default async function updateProductVariant(context, input) {
     { shopId }
   );
 
+  //Update all active shops if any set. Else leave default values.
+  const {activeShops} = productVariantInput;
+  delete productVariantInput.activeShops;
+
   const updateDocument = await cleanProductVariantInput(context, {
     productVariantInput
   });
+
+  if (activeShops && activeShops.length) {
+    updateDocument.shopId = activeShops.map(shop => shop.value);
+  }
 
   const fields = Object.keys(updateDocument);
   if (fields.length === 0) {
@@ -62,8 +70,14 @@ export default async function updateProductVariant(context, input) {
 
   if (!updatedProductVariant) throw new ReactionError("not-found", "Product variant not found");
 
+  const activeShopsIds = updatedProductVariant.shopId;
   updatedProductVariant.shop = shopId;
   updatedProductVariant.shopId = shopId;
+
+  //Add active shops object for product
+  updatedProductVariant.activeShops = await Shops.find({_id: {$in: activeShopsIds}}).map((doc) => {
+    return {value: doc._id, label: doc.name}
+  }).toArray();
 
   await appEvents.emit("afterVariantUpdate", {
     fields,

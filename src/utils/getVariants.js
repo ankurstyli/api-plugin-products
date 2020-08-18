@@ -13,7 +13,7 @@
 export default async function getVariants(context, node, topOnly, args) {
     const {shouldIncludeHidden, shouldIncludeArchived} = args;
     const {collections} = context;
-    const {Products} = collections;
+    const {Products, Shops} = collections;
     const {_id: productOrVariantId, shopId} = node;
 
     const selector = {
@@ -40,10 +40,15 @@ export default async function getVariants(context, node, topOnly, args) {
     }
 
     const res = await Products.find(selector).map(variant => {
-        variant.shop = shopId;
-        variant.shopId = shopId;
         return variant;
     }).toArray();
-
+    for (const variant of res){
+        const activeShopsIds = variant.shopId;
+        variant.shop = shopId;
+        variant.shopId = shopId;
+        variant.activeShops = await Shops.find({_id: {$in: activeShopsIds}}).map((doc) => {
+            return {value: doc._id, label: doc.name}
+        }).toArray();
+    }
     return res;
 }
