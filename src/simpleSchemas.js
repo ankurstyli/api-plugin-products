@@ -1,21 +1,20 @@
 import SimpleSchema from "simpl-schema";
 
 
-
 /**
  * \MultiLang/
  */
 export const MultiLang = new SimpleSchema({
-  "en": {
-    type: String,
-    optional: true,
-    label: "English name"
-  },
-  "ar": {
-    type: String,
-    optional: true,
-    label: "Arabic name"
-  }
+    "en": {
+        type: String,
+        optional: true,
+        label: "English name"
+    },
+    "ar": {
+        type: String,
+        optional: true,
+        label: "Arabic name"
+    }
 });
 
 
@@ -31,32 +30,32 @@ export const MultiLang = new SimpleSchema({
  * @property {String} description optional
  */
 const Metafield = new SimpleSchema({
-  key: {
-    type: String,
-    max: 30,
-    optional: true
-  },
-  namespace: {
-    type: String,
-    max: 20,
-    optional: true
-  },
-  scope: {
-    type: String,
-    optional: true
-  },
-  value: {
-    type: String,
-    optional: true
-  },
-  valueType: {
-    type: String,
-    optional: true
-  },
-  description: {
-    type: String,
-    optional: true
-  }
+    key: {
+        type: String,
+        max: 30,
+        optional: true
+    },
+    namespace: {
+        type: String,
+        max: 20,
+        optional: true
+    },
+    scope: {
+        type: String,
+        optional: true
+    },
+    value: {
+        type: String,
+        optional: true
+    },
+    valueType: {
+        type: String,
+        optional: true
+    },
+    description: {
+        type: String,
+        optional: true
+    }
 });
 
 /**
@@ -70,26 +69,26 @@ const Metafield = new SimpleSchema({
  * @property {Number} weight optional
  */
 const ShippingParcel = new SimpleSchema({
-  containers: {
-    type: String,
-    optional: true
-  },
-  length: {
-    type: Number,
-    optional: true
-  },
-  width: {
-    type: Number,
-    optional: true
-  },
-  height: {
-    type: Number,
-    optional: true
-  },
-  weight: {
-    type: Number,
-    optional: true
-  }
+    containers: {
+        type: String,
+        optional: true
+    },
+    length: {
+        type: Number,
+        optional: true
+    },
+    width: {
+        type: Number,
+        optional: true
+    },
+    height: {
+        type: Number,
+        optional: true
+    },
+    weight: {
+        type: Number,
+        optional: true
+    }
 });
 
 /**
@@ -102,14 +101,14 @@ const ShippingParcel = new SimpleSchema({
  * @property {String[]} workflow optional
  */
 const Workflow = new SimpleSchema({
-  "status": {
-    type: String
-  },
-  "workflow": {
-    type: Array,
-    optional: true
-  },
-  "workflow.$": String
+    "status": {
+        type: String
+    },
+    "workflow": {
+        type: Array,
+        optional: true
+    },
+    "workflow.$": String
 });
 
 /**
@@ -123,28 +122,28 @@ const Workflow = new SimpleSchema({
  * @property {Date} createdAt required
  */
 export const VariantMedia = new SimpleSchema({
-  "mediaId": {
-    type: String,
-    optional: true
-  },
-  "priority": {
-    type: SimpleSchema.Integer,
-    optional: true
-  },
-  "metafields": {
-    type: Array,
-    optional: true
-  },
-  "metafields.$": {
-    type: Metafield
-  },
-  "updatedAt": {
-    type: Date,
-    optional: true
-  },
-  "createdAt": {
-    type: Date
-  }
+    "mediaId": {
+        type: String,
+        optional: true
+    },
+    "priority": {
+        type: SimpleSchema.Integer,
+        optional: true
+    },
+    "metafields": {
+        type: Array,
+        optional: true
+    },
+    "metafields.$": {
+        type: Metafield
+    },
+    "updatedAt": {
+        type: Date,
+        optional: true
+    },
+    "createdAt": {
+        type: Date
+    }
 });
 
 /**
@@ -174,105 +173,105 @@ export const VariantMedia = new SimpleSchema({
  * @property {Workflow} workflow optional
  */
 export const ProductVariant = new SimpleSchema({
-  "_id": {
-    type: String,
-    label: "Variant ID"
-  },
-  "ancestors": {
-    type: Array
-  },
-  "ancestors.$": {
-    type: String
-  },
-  "attributeLabel": {
-    type: String,
-    optional: true
-  },
-  "barcode": {
-    type: String,
-    optional: true
-  },
-  "createdAt": {
-    type: Date,
-    optional: true
-  },
-  "height": {
-    type: Number,
-    min: 0,
-    optional: true
-  },
-  "index": {
-    label: "Variant position number in list",
-    type: SimpleSchema.Integer,
-    optional: true
-  },
-  "isDeleted": {
-    type: Boolean
-  },
-  "isVisible": {
-    type: Boolean
-  },
-  "length": {
-    type: Number,
-    min: 0,
-    optional: true
-  },
-  "metafields": {
-    type: Array,
-    optional: true
-  },
-  "metafields.$": {
-    type: Metafield
-  },
-  "minOrderQuantity": {
-    label: "Minimum order quantity",
-    type: SimpleSchema.Integer,
-    optional: true
-  },
-  "optionTitle": {
-    type: String,
-    optional: true
-  },
-  "originCountry": {
-    type: String,
-    optional: true
-  },
-  "shopId": {
-    type: Array,
-    label: "ShopId Array",
-  },
-  "shopId.$": {
-    type: String
-  },
-  "sku": {
-    type: String,
-    optional: true
-  },
-  "title": {
-    type: MultiLang,
-    optional: true
-  },
-  "type": {
-    type: String
-  },
-  "updatedAt": {
-    type: Date,
-    optional: true
-  },
-  "weight": {
-    type: Number,
-    min: 0,
-    optional: true
-  },
-  "width": {
-    type: Number,
-    min: 0,
-    optional: true
-  },
-  "workflow": {
-    type: Workflow,
-    optional: true
-  }
+    "_id": {
+        type: String,
+        label: "Variant ID"
+    },
+    "ancestors": {
+        type: Array
+    },
+    "ancestors.$": {
+        type: String
+    },
+    "attributeLabel": {
+        type: String,
+        optional: true
+    },
+    "barcode": {
+        type: String,
+        optional: true
+    },
+    "createdAt": {
+        type: Date,
+        optional: true
+    },
+    "height": {
+        type: Number,
+        min: 0,
+        optional: true
+    },
+    "index": {
+        label: "Variant position number in list",
+        type: SimpleSchema.Integer,
+        optional: true
+    },
+    "isDeleted": {
+        type: Boolean
+    },
+    "isVisible": {
+        type: Boolean
+    },
+    "length": {
+        type: Number,
+        min: 0,
+        optional: true
+    },
+    "metafields": {
+        type: Array,
+        optional: true
+    },
+    "metafields.$": {
+        type: Metafield
+    },
+    "minOrderQuantity": {
+        label: "Minimum order quantity",
+        type: SimpleSchema.Integer,
+        optional: true
+    },
+    "optionTitle": {
+        type: String,
+        optional: true
+    },
+    "originCountry": {
+        type: String,
+        optional: true
+    },
+    "shopId": {
+        type: Array,
+        label: "ShopId Array",
+    },
+    "shopId.$": {
+        type: String
+    },
+    "sku": {
+        type: String,
+        optional: true
+    },
+    "title": {
+        type: MultiLang,
+        optional: true
+    },
+    "type": {
+        type: String
+    },
+    "updatedAt": {
+        type: Date,
+        optional: true
+    },
+    "weight": {
+        type: Number,
+        min: 0,
+        optional: true
+    },
+    "width": {
+        type: Number,
+        min: 0,
+        optional: true
+    },
+    "workflow": {
+        type: Workflow,
+        optional: true
+    }
 });
 
 
@@ -312,169 +311,174 @@ export const ProductVariant = new SimpleSchema({
  * @property {Workflow} workflow optional
  */
 export const Product = new SimpleSchema({
-  "_id": {
-    type: String,
-    label: "Product ID"
-  },
-  "optionId": {
-    type: String,
-    label: "Option Id"
-  },
-  "styleId": {
-    type: String,
-    label: "Style Id"
-  },
-  "shootStatus": {
-    type: String,
-    label: "Shoot Status",
-    optional: true
-  },
-  "translationStatus": {
-    type: String,
-    label: "Shoot Status",
-    optional: true
-  },
-  "contentStatus": {
-    type: String,
-    label: "Shoot Status",
-    optional: true
-  },
-  "mPrice": {
-    type: String,
-    label: "Shoot Status",
-    optional: true
-  },
-  "sku": {
-    type: String,
-    label: "Product SKU",
-    optional: true
-  },
-  "ancestors": {
-    type: Array
-  },
-  "ancestors.$": {
-    type: String
-  },
-  "createdAt": {
-    type: Date
-  },
-  "currentProductHash": {
-    type: String,
-    optional: true
-  },
-  "description": {
-    type: MultiLang,
-    optional: true
-  },
-  "facebookMsg": {
-    type: String,
-    optional: true,
-    max: 255
-  },
-  "googleplusMsg": {
-    type: String,
-    optional: true,
-    max: 255
-  },
-  "handle": {
-    type: String
-  },
-  "hashtags": {
-    type: Array,
-    optional: true
-  },
-  "hashtags.$": {
-    type: String
-  },
-  "isDeleted": {
-    type: Boolean
-  },
-  "isVisible": {
-    type: Boolean
-  },
-  "metaDescription": {
-    type: String,
-    optional: true
-  },
-  "metafields": {
-    type: Array,
-    optional: true
-  },
-  "metafields.$": {
-    type: Metafield
-  },
-  "originCountry": {
-    type: String,
-    optional: true
-  },
-  "pageTitle": {
-    type: MultiLang,
-    optional: true
-  },
-  "parcel": {
-    type: ShippingParcel,
-    optional: true
-  },
-  "pinterestMsg": {
-    type: String,
-    optional: true,
-    max: 255
-  },
-  "productType": {
-    type: String,
-    optional: true
-  },
-  "publishedAt": {
-    type: Date,
-    optional: true
-  },
-  "publishedProductHash": {
-    type: String,
-    optional: true
-  },
-  "shopId": {
-    type: Array,
-    label: "ShopId Array",
-  },
-  "shopId.$": {
-    type: String
-  },
-  "shouldAppearInSitemap": {
-    type: Boolean,
-    optional: true
-  },
-  "supportedFulfillmentTypes": {
-    type: Array
-  },
-  "supportedFulfillmentTypes.$": String,
-  "template": {
-    type: String,
-    optional: true
-  },
-  "title": {
-    type: MultiLang,
-    optional: true
-  },
-  "twitterMsg": {
-    type: String,
-    optional: true,
-    max: 140
-  },
-  "type": {
-    type: String
-  },
-  "updatedAt": {
-    type: Date,
-    optional: true
-  },
-  "vendor": {
-    type: String,
-    optional: true
-  },
-  "workflow": {
-    type: Workflow,
-    optional: true
-  }
+    "_id": {
+        type: String,
+        label: "Product ID"
+    },
+    "optionId": {
+        type: String,
+        label: "Option Id"
+    },
+    "styleId": {
+        type: String,
+        label: "Style Id"
+    },
+    "shootStatus": {
+        type: String,
+        label: "Shoot Status",
+        optional: true
+    },
+    "translationStatus": {
+        type: String,
+        label: "Shoot Status",
+        optional: true
+    },
+    "contentStatus": {
+        type: String,
+        label: "Shoot Status",
+        optional: true
+    },
+    "mPrice": {
+        type: String,
+        label: "Shoot Status",
+        optional: true
+    },
+    "sku": {
+        type: String,
+        label: "Product SKU",
+        optional: true
+    },
+    "ancestors": {
+        type: Array
+    },
+    "ancestors.$": {
+        type: String
+    },
+    "createdAt": {
+        type: Date
+    },
+    "currentProductHash": {
+        type: String,
+        optional: true
+    },
+    "description": {
+        type: MultiLang,
+        optional: true
+    },
+    "facebookMsg": {
+        type: String,
+        optional: true,
+        max: 255
+    },
+    "googleplusMsg": {
+        type: String,
+        optional: true,
+        max: 255
+    },
+    "handle": {
+        type: String
+    },
+    "hashtags": {
+        type: Array,
+        optional: true
+    },
+    "hashtags.$": {
+        type: String
+    },
+    "isDeleted": {
+        type: Boolean
+    },
+    "isVisible": {
+        type: Boolean
+    },
+    "metaDescription": {
+        type: String,
+        optional: true
+    },
+    "metafields": {
+        type: Array,
+        optional: true
+    },
+    "metafields.$": {
+        type: Metafield,
+    },
+    "attributeGroups": {
+        type: Object,
+        optional: true,
+        blackbox: true
+    },
+    "originCountry": {
+        type: String,
+        optional: true
+    },
+    "pageTitle": {
+        type: MultiLang,
+        optional: true
+    },
+    "parcel": {
+        type: ShippingParcel,
+        optional: true
+    },
+    "pinterestMsg": {
+        type: String,
+        optional: true,
+        max: 255
+    },
+    "productType": {
+        type: String,
+        optional: true
+    },
+    "publishedAt": {
+        type: Date,
+        optional: true
+    },
+    "publishedProductHash": {
+        type: String,
+        optional: true
+    },
+    "shopId": {
+        type: Array,
+        label: "ShopId Array",
+    },
+    "shopId.$": {
+        type: String
+    },
+    "shouldAppearInSitemap": {
+        type: Boolean,
+        optional: true
+    },
+    "supportedFulfillmentTypes": {
+        type: Array
+    },
+    "supportedFulfillmentTypes.$": String,
+    "template": {
+        type: String,
+        optional: true
+    },
+    "title": {
+        type: MultiLang,
+        optional: true
+    },
+    "twitterMsg": {
+        type: String,
+        optional: true,
+        max: 140
+    },
+    "type": {
+        type: String
+    },
+    "updatedAt": {
+        type: Date,
+        optional: true
+    },
+    "vendor": {
+        type: String,
+        optional: true
+    },
+    "workflow": {
+        type: Workflow,
+        optional: true
+    }
 });
 
 // Deprecated. This schema is no longer used but because it's registered
