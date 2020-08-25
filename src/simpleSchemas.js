@@ -230,7 +230,7 @@ export const ProductVariant = new SimpleSchema({
     optional: true
   },
   "optionTitle": {
-    type: String,
+    type: MultiLang,
     optional: true
   },
   "originCountry": {
@@ -342,6 +342,24 @@ export const Product = new SimpleSchema({
   "mPrice": {
     type: String,
     label: "Shoot Status",
+    optional: true
+  },
+  "mulinImages": {
+    type: Array,
+    label: "Mulin Images",
+    optional: true
+  },
+  "mulinImages.$": {
+    type: String
+  },
+  "ranking": {
+    type: String,
+    label: "Ranking",
+    optional: true
+  },
+  "quantity": {
+    type: String,
+    label: "Quantity",
     optional: true
   },
   "sku": {

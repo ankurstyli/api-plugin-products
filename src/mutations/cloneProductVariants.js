@@ -82,7 +82,7 @@ export default async function cloneProductVariants(context, input) {
           ...sortedVariant,
           _id: variantNewId,
           title: `${sortedVariant.title || "Untitled"} - copy`,
-          optionTitle: `${sortedVariant.optionTitle || "Untitled"} - copy`
+          optionTitle: `${(sortedVariant.optionTitle ? sortedVariant.optionTitle.en : "Untitled") || "Untitled"} - copy`
         };
       } else {
         const parentIndex = sortedVariant.ancestors.indexOf(variantId);
@@ -100,8 +100,8 @@ export default async function cloneProductVariants(context, input) {
           clonedVariantObject.title = sortedVariant.title;
         }
 
-        if (typeof sortedVariant.optionTitle === "string") {
-          clonedVariantObject.optionTitle = sortedVariant.optionTitle;
+        if (typeof sortedVariant.optionTitle.en === "string") {
+          clonedVariantObject.optionTitle.en = sortedVariant.optionTitle.en;
         }
 
         if (typeof sortedVariant.height === "number" && sortedVariant.height >= 0) {

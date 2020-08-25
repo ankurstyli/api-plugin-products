@@ -63,6 +63,15 @@ type Product {
   "Mulin Price in Base Currency"
   mPrice: String
 
+  "Ranking"
+  ranking: String
+
+  "quantity"
+  quantity: String
+
+  "Mulin Images"
+  mulinImages: [String]
+
   "Ancestors"
   ancestors: [String]
 
@@ -214,7 +223,7 @@ type ProductVariant {
   minOrderQuantity: Int
 
   "A short title to use for product detail select lists"
-  optionTitle: String
+  optionTitle: MultiLang
 
   "Child variants, if any"
   options(
@@ -510,6 +519,15 @@ input ProductInput {
   "Mulin Price in Base Currency"
   mPrice: String
 
+  "Ranking"
+  ranking: String
+
+  "quantity"
+  quantity: String
+
+  "Mulin Images"
+  mulinImages: [String]
+
   "Facebook message"
   facebookMsg: String
 
@@ -607,13 +625,19 @@ input ProductVariantInput {
   minOrderQuantity: Int
 
   "A short title to use for product detail select lists"
-  optionTitle: String
+  optionTitle: MultiLangInput
 
   "The country of origin"
   originCountry: String
 
   "SKU of variant"
   sku: String
+
+  "quantity"
+  quantity: String
+
+  "price"
+  price: Float
 
   """
   The full variant title for use on cart, checkout, and order summaries and on invoices.
@@ -774,6 +798,15 @@ extend type Query {
 
     "Mulin Price in Base Currency"
     mPrice: String
+
+    "Mulin Images"
+    mulinImages: [String]
+
+    "Ranking"
+    ranking: String
+
+    "quantity"
+    quantity: String
 
     "Option Id"
     optionId: String
